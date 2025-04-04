@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
-    public float instableTimeRemaining = 25f;
+    public float instableTimeRemaining = 10f;
 
     public bool gameActive;
     public float gameTimer = 180;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         instablePuzzles = 0;
-        instableTimeRemaining = 25f;
+        instableTimeRemaining = 10f;
         instableTimerObject.SetActive(true);
     }
 
@@ -84,15 +84,15 @@ public class GameManager : MonoBehaviour
         else
         {
             instableTimerObject.SetActive(false);
-            instableTimeRemaining = 25f;
+            instableTimeRemaining = 10f;
         }
         if (instablePuzzles == 1)
         {
-            instableTimerObjectSubheader.text = $"RESET [1] MODULE IN";
+            instableTimerObjectSubheader.text = $"RESET <b>[1]</b> MODULE IN";
         }
         else if (instablePuzzles > 1)
         {
-            instableTimerObjectSubheader.text = $"RESET [{instablePuzzles.ToString()}] MODULES IN";
+            instableTimerObjectSubheader.text = $"RESET <b>[{instablePuzzles.ToString()}]</b> MODULES IN";
         }
         
     }

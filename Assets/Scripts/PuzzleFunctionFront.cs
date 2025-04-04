@@ -61,6 +61,7 @@ public class PuzzleFunctionFront : MonoBehaviour
         warningLight.GetComponent<LightScript>().flashing = true;
         InitializeButtons();
         GameManager.instance.instablePuzzles++;
+        GameManager.instance.instableTimeRemaining += 10;
     }
 
     public void InitializeButtons()
@@ -206,7 +207,8 @@ public class PuzzleFunctionFront : MonoBehaviour
     public IEnumerator randomInstability()
     {
         delayCheck = true;
-        yield return new WaitForSeconds(Random.Range(10f, 20f));
+        float randomRange = Random.Range(10f, 20f);
+        yield return new WaitForSeconds(randomRange);
         delayCheck = false;
         instable = true;
         frontFaceFunction();
