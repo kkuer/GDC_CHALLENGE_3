@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Light : MonoBehaviour
+public class LightScript : MonoBehaviour
 {
     public GameObject bulb;
     private MeshRenderer mr;
@@ -16,7 +16,6 @@ public class Light : MonoBehaviour
     void Start()
     {
         mr = bulb.GetComponent<MeshRenderer>();
-        flashing = false;
         delayCheck = false;
     }
 
