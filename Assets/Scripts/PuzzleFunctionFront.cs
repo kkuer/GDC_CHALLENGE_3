@@ -207,7 +207,7 @@ public class PuzzleFunctionFront : MonoBehaviour
     public IEnumerator randomInstability()
     {
         delayCheck = true;
-        float randomRange = Random.Range(10f, 20f);
+        float randomRange = Random.Range(5f, 20f);
         yield return new WaitForSeconds(randomRange);
         delayCheck = false;
         instable = true;
