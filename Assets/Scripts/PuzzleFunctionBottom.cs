@@ -95,6 +95,7 @@ public class PuzzleFunctionBottom : MonoBehaviour
         complete = true;
         instable = false;
         GameManager.instance.instablePuzzles--;
+        GameManager.instance.puzzlesCompleted++;
         warningLight.GetComponent<LightScript>().flashing = false;
 
         //delete puzzle

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,10 +17,15 @@ public class GameManager : MonoBehaviour
     public GameObject instableTimerObject;
     public TMP_Text instableTimerObjectSubheader;
 
+    public GameObject gameOverScreen;
+
     public int instablePuzzles;
+    public int puzzlesCompleted;
+    public TMP_Text totalPuzzlesLabel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Awake()
     {
         if (instance == null)
         {
@@ -29,11 +35,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
+    void Start()
+    {
         gameActive = true;
         Time.timeScale = 1;
 
         instablePuzzles = 0;
+        puzzlesCompleted = 0;
         instableTimeRemaining = 10f;
         instableTimerObject.SetActive(true);
     }
@@ -57,9 +67,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gameTimer = 0;
-            gameActive = false;
-            Time.timeScale = 0;
+            endGame();
         }
 
         if (instablePuzzles > 0)
@@ -73,12 +81,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                instableTimeRemaining = 0;
-                gameActive = false;
-
-                // You can add any actions to perform when timer reaches zero here
-
-                Debug.Log("Timer has finished!");
+                endGame();
             }
         }
         else
@@ -95,6 +98,11 @@ public class GameManager : MonoBehaviour
             instableTimerObjectSubheader.text = $"RESET <b>[{instablePuzzles.ToString()}]</b> MODULES IN";
         }
         
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
 
     void updateTimer(float currentTime)
@@ -110,5 +118,15 @@ public class GameManager : MonoBehaviour
     void UpdateInstableTimer()
     {
         instableTimerText.text = instableTimeRemaining.ToString("F1");
+    }
+
+    void endGame()
+    {
+        gameTimer = 0;
+        instableTimeRemaining = 0;
+        gameActive = false;
+        gameOverScreen.SetActive(true);
+        totalPuzzlesLabel.text = puzzlesCompleted.ToString();
+        Time.timeScale = 0;
     }
 }

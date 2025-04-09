@@ -156,6 +156,7 @@ public class PuzzleFunctionBack : MonoBehaviour
         complete = true;
         instable = false;
         GameManager.instance.instablePuzzles--;
+        GameManager.instance.puzzlesCompleted++;
         warningLight.GetComponent<LightScript>().flashing = false;
         Debug.Log("Sequence completed successfully!");
 
